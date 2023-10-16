@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  servicename:
+    image: nombre_de_la_imagen
+    build: 
+      context: ruta_al_contexto
+      dockerfile: Dockerfile_alternativo
+    ports:
+      - "puerto_host:puerto_contenedor"
+    volumes:
+      - /ruta/host:/ruta/contenedor
+    environment:
+      - VARIABLE=valor
+    networks:
+      - nombre_de_la_red
+    depends_on:
+      - servicio_dependiente
+    command: comando_a_ejecutar
+    entrypoint: punto_de_entrada
+    restart: always
+    expose:
+      - puerto_contenedor
+    healthcheck:
+      test: ["CMD", "comando_de_prueba"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "50M"
+      placement:
+        constraints:
+          - "node.role == worker"
