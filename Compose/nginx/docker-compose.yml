@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+
+  Proxy:
+    image: nginx:alpine
+    ports:
+      - 8443:8443
+      - 8080:8080
+      - 80:80
+      - 443:443
+      - 7071:7071
+      - 2526:2526
+      - 2626:2626
+      - 25:25
+      - 995:995
+      - 993:993
+      - 465:465
+      - 7025:725
+
+    restart: always
+    volumes:
+      - /etc/nginx/nginx.conf:/etc/nginx/nginx.conf
